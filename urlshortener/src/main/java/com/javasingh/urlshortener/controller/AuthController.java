@@ -12,6 +12,7 @@ import com.javasingh.urlshortener.dtos.LoginRequest;
 import com.javasingh.urlshortener.models.User;
 import com.javasingh.urlshortener.service.UserService;
 
+//Authorization Controller
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {
