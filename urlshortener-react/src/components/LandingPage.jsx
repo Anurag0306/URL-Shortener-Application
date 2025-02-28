@@ -1,56 +1,96 @@
-
 import React from "react";
 import Card from "./Card";
-
-
-
+import { motion } from "framer-motion";
 
 const LandingPage = () => {
+  let desc =
+    "Generate short, memorable links with ease using Trimly’s intuitive interface. Share URLs effortlessly across platforms. Optimize your sharing strategy with Linklytics. Track clicks and manage your links seamlessly to enhance your online presence.";
 
-  let desc = "Generate short, memorable links with ease using Linklytics’s intuitive interface. Share URLs effortlessly across platforms. Optimize your sharing strategy with Linklytics. Track clicks and manage your links seamlessly to enhance your online presence. Generate short, memorable links with ease using Linklytics’s intuitive interface. Share URLs effortlessly across platforms.";
-
-  
   return (
-    <div className="min-h-[calc(100vh-64px)]  lg:px-14 sm:px-8 px-4">
-      <div className="lg:flex-row flex-col    lg:py-5   pt-16   lg:gap-10 gap-8 flex justify-between items-center">
-        <div className=" flex-1">
-          <h1
-            className="font-bold font-roboto text-slate-800 md:text-5xl sm:text-4xl text-3xl   md:leading-[55px] sm:leading-[45px] leading-10 lg:w-full md:w-[70%] w-full"
+    <div className="bg-[#fff7f9] min-h-[calc(100vh-64px)] lg:px-14 sm:px-8 px-4">
+      {/* Hero Section */}
+      <div className="lg:flex-row flex-col lg:py-5 pt-16 lg:gap-10 gap-8 flex justify-between items-center">
+        {/* Left Content */}
+        <div className="flex-1 text-center lg:text-left">
+        <motion.h1
+            initial={{ opacity: 0, y: -80 }}
+            whileInView={{
+              opacity: 1,
+              y: 0,
+            }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="font-extrabold font-sans text-transparent bg-clip-text bg-gradient-to-r from-[#eb412e] via-[#db1567] to-[#9b4343] md:text-6xl sm:text-5xl text-4xl md:leading-[65px] sm:leading-[50px] leading-10"
             >
-            Linklytics Simplifies URL Shortening For Efficient Sharing.
-          </h1>
-          <p className="text-slate-700 text-sm my-5">
-            Linklytics streamlines the process of URL shortening, making sharing
+            Trimly Shorten. Share. Track.
+          </motion.h1>
+          <h3 className="font-bold font-roboto text-slate-900 md:text-4xl sm:text-3xl text-2xl mt-2">
+            Simplify Your Links Like Never Before!
+          </h3>
+
+          <p className="text-slate-700 text-sm my-5 leading-relaxed md:w-[80%]">
+            Trimly streamlines the process of URL shortening, making sharing
             links effortless and efficient. With its user-friendly interface,
-            Linklytics allows you to generate concise, easy-to-share URLs in
-            seconds. Simplify your sharing experience with Linklytics today.
+            Trimly allows you to generate concise, easy-to-share URLs in
+            seconds.
           </p>
-          <div className="flex items-center gap-3">
-          <button className="bg-gradient-to-r from-blue-500 to-purple-500 text-white w-40 rounded-md py-2">
-              Manage Links
-          </button>
-            <button
-              className="border-btnColor border w-40 text-btnColor rounded-md  py-2 "
-            >
-              Create Short Link
-            </button>
+
+          {/* Buttons */}
+          <div className="flex justify-center lg:justify-start items-center gap-4">
+          <motion.button
+              initial={{ opacity: 0, y: 80 }}
+              whileInView={{
+                opacity: 1,
+                y: 0,
+              }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+                className="bg-gradient-to-r from-orange-500 to-red-400 hover:scale-105 transition-all duration-300 text-white w-44 rounded-lg py-3 shadow-lg"
+                >
+                Manage Links
+            </motion.button>
+            <motion.button
+              initial={{ opacity: 0, y: 80 }}
+              whileInView={{
+                opacity: 1,
+                y: 0,
+              }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="border border-red-300 hover:bg-gradient-to-r from-orange-500 to-red-400 hover:text-white transition-all duration-300 w-44 text-blue-500 rounded-lg py-3 shadow-md"
+              >
+                Create Short Link
+            </motion.button>
           </div>
         </div>
-        <div className="   flex-1 flex   justify-center w-full">
+
+        {/* Image Section */}
+        <div className="flex-1 flex justify-center">
           <img
-            className="sm:w-[480px] w-[400px] object-cover rounded-md"
-            src="/Images/logo.png"
-            alt=""
+            className="sm:w-[480px] w-[400px] object-cover rounded-xl"
+            src="/Images/trimlylogo.png"
+            alt="Trimly Logo"
           />
         </div>
       </div>
+
+      {/* Trusted Section */}
       <div className="sm:pt-12 pt-7">
-        <p
-          className="text-slate-800 font-roboto font-bold lg:w-[60%]  md:w-[70%] sm:w-[80%] mx-auto text-3xl text-center"
-        >
-          Trusted by individuals and teams at the world best companies{" "}
-        </p>
-        <div className="pt-4 pb-7 grid lg:gap-7 gap-4 xl:grid-cols-4  lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 mt-4">
+        <motion.p
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{
+            opacity: 1,
+            y: 0,
+          }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+            className="text-slate-800 font-roboto font-bold lg:w-[60%] md:w-[70%] sm:w-[80%] mx-auto text-3xl text-center"
+          >
+            Trusted by individuals and teams at the world’s best companies.
+        </motion.p>
+
+        {/* Cards Grid */}
+        <div className="pt-4 pb-7 grid lg:gap-7 gap-5 xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 mt-4">
           <Card
             title="Simple URL Shortening"
             desc="Experience the ease of creating short, memorable URLs in just a few clicks. Our intuitive interface and quick setup process ensure you can start shortening URLs without any hassle."
