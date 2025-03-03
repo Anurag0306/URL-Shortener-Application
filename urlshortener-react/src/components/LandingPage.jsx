@@ -1,11 +1,19 @@
 import React from "react";
 import Card from "./Card";
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
+import { useStoreContext } from '../contextApi/ContextApi';
 
-const LandingPage = () => {
-  let desc =
+
+let desc = 
     "Generate short, memorable links with ease using Trimly’s intuitive interface. Share URLs effortlessly across platforms. Optimize your sharing strategy with Linklytics. Track clicks and manage your links seamlessly to enhance your online presence.";
+const LandingPage = () => {
 
+    const navigate  = useNavigate();
+    const { token } = useStoreContext();
+    console.log("TOKEN FROM LANDING PAGE: "+ token);
+    
+  
   return (
     <div className="bg-[#fff7f9] min-h-[calc(100vh-64px)] lg:px-14 sm:px-8 px-4">
       {/* Hero Section */}

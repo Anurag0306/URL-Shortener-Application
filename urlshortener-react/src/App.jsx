@@ -5,6 +5,8 @@ import AboutPage from './components/AboutPage'
 import NavBar from './components/NavBar'
 import Footer from './components/Footer'
 import RegisterPage from './components/RegisterPage'
+import { Toaster } from 'react-hot-toast'
+import LoginPage from './components/LoginPage'
 
 // App component that renders LandingPage and AboutPage based on the current route path
 function App() {
@@ -12,11 +14,14 @@ function App() {
     <>
       <BrowserRouter>
       <NavBar />
+      <Toaster position='bottom-center'/>
           <Routes>
             <Route path="/" element={<LandingPage />} />
             <Route path="/about" element={<AboutPage />} />
             <Route path="/register" element={<RegisterPage />} />
+            <Route path="/login" element={<LoginPage />} />
           </Routes>
+          
           <Footer/>
       </BrowserRouter>
     </>  
