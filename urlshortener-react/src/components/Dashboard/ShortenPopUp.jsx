@@ -1,7 +1,6 @@
 import Modal from "@mui/material/Modal";
-import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
 import React from "react";
+import CreateNewShorten from './CreateNewShorten';
 
 const ShortenPopUp = ({ open, setOpen, refetch }) => {
   const handleClose = () => {
@@ -23,10 +22,10 @@ const ShortenPopUp = ({ open, setOpen, refetch }) => {
         className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 p-6 bg-white rounded-lg shadow-lg w-[90%] sm:w-[400px]"
       >
         <Typography id="modal-modal-title" variant="h6" component="h2" className="font-bold text-gray-800">
-          Text in a modal
+          Url short tho karle
         </Typography>
         <Typography id="modal-modal-description" sx={{ mt: 2 }} className="text-gray-600">
-          Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+          Chala ja chutiye!
         </Typography>
       </Box> */}
     </Modal>
