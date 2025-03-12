@@ -1,12 +1,14 @@
-import React,{useState} from "react";
-import Graph from "./Graph";
-import { useStoreContext } from "../../contextApi/ContextApi";
-import { useFetchTotalClicks } from "../../hooks/useQuery";
-import Loader from "../Loader";
-import ShortenPopUp from "./ShortenPopUp";
+import React, { useState } from 'react'
+import Graph from './Graph'
+import { useStoreContext } from '../../contextApi/ContextApi'
+import { useFetchMyShortUrls, useFetchTotalClicks } from '../../hooks/useQuery'
+import ShortenPopUp from './ShortenPopUp'
+import { FaLink } from 'react-icons/fa'
+import Loader from '../Loader'
+import ShortenUrlList from './ShortenUrlList'
 
 const DashboardLayout = () => {
-  const refetch = false;
+  //const refetch = false;
   const { token } = useStoreContext();
   const[shortenPopUp,setShortenPopUp] =useState(false);
 
@@ -18,7 +20,7 @@ const DashboardLayout = () => {
 
   // Fetch analytics data
 
-  // const {isLoading, data: myShortenUrls, refetch } = useFetchMyShortUrls(token, onError)
+  const {isLoading, data: myShortenUrls, refetch } = useFetchMyShortUrls(token, onError)
   const { isLoading: loader, data: totalClicks } = useFetchTotalClicks(token, onError);
 
   return (
@@ -61,6 +63,21 @@ const DashboardLayout = () => {
             + Create New Short URL
             </button>
           </div>
+          <div>
+              {!isLoading && myShortenUrls.length === 0 ? (
+                <div className="flex justify-center pt-16">
+                  <div className="flex gap-2 items-center justify-center  py-6 sm:px-8 px-5 rounded-md   shadow-lg  bg-gray-50">
+                    <h1 className="text-slate-800 font-montserrat   sm:text-[18px] text-[14px] font-semibold mb-1 ">
+                      You haven't created any short link yet
+                    </h1>
+                    <FaLink className="text-blue-500 sm:text-xl text-sm " />
+                  </div>
+              </div>
+              ) : (
+                  // <p>HII</p>
+                  <ShortenUrlList data={myShortenUrls} />
+              )}
+            </div>
         </div>
       )}
         <ShortenPopUp

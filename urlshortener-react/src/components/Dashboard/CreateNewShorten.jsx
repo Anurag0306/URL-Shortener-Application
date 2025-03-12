@@ -34,7 +34,7 @@ const CreateNewShorten = ({ setOpen }) => {
       });
 
       const shortenUrl = `${
-        import.meta.env.VITE_REACT_FRONT_END_URL + "/s/" + `${res.shortUrl}`
+        import.meta.env.VITE_REACT_SUBDOMAIN+ "/s/" + `${res.shortUrl}`
       }`;
       navigator.clipboard.writeText(shortenUrl).then(() => {
         toast.success("Short URL Copied to Clipboard", {
