@@ -1,11 +1,21 @@
 import React, { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { IoIosMenu } from "react-icons/io";
 import { RxCross2 } from "react-icons/rx";
+import { useStoreContext } from "../contextApi/ContextApi";
+
 
 const Navbar = () => {
+  const navigate = useNavigate();
+  const {token, setToken} = useStoreContext();
   const path = useLocation().pathname;
   const [navbarOpen, setNavbarOpen] = useState(false);
+
+  const onLogOutHandler = () => {
+    setToken(null);
+    localStorage.removeItem("JWT_TOKEN");
+    navigate("/login");
+  };
 
   return (
     <div className="h-16 z-50 flex items-center sticky top-0 bg-[#FFF3E0] shadow-md border-b-2 border-[#fc6a00]">
@@ -44,13 +54,32 @@ const Navbar = () => {
               About
             </Link>
           </li>
-
-          {/* SignUp Button - Modern Gradient Color */}
-          <Link to="/register">
-            <li className="sm:ml-0 -ml-1 bg-gradient-to-r from-[#FF6B6B] to-[#D72691] text-white cursor-pointer w-24 text-center font-semibold px-3 py-2 rounded-md hover:scale-105 transition-all duration-200 shadow-md hover:shadow-pink-300/50 border border-[#fc6a00]">
-              SignUp
-            </li>
-          </Link>
+          {token && (
+            <li className="hover:text-btnColor font-[500]  transition-all duration-150">
+            <Link
+              className={`${path === "/about" ? "text-[#fc6a00] font-semibold" : "text-gray-700"
+              } hover:text-[#fc6a00] transition-all duration-200`}
+              to="/dashboard"
+            >
+              Dashboard
+            </Link>
+          </li>
+          )}
+          {!token && (
+            <Link to="/register">
+              <li 
+                className="sm:ml-0 -ml-1 bg-gradient-to-r from-[#FF6B6B] to-[#D72691] text-white cursor-pointer w-24 text-center font-semibold px-3 py-2 rounded-md hover:scale-105 transition-all duration-200 shadow-md hover:shadow-pink-300/50 border border-[#fc6a00]">
+                  SignUp
+              </li>
+            </Link>
+            )}
+          {token && (
+            <button
+             onClick={onLogOutHandler}
+             className="sm:ml-0 -ml-1 bg-gradient-to-r from-[#FF6B6B] to-[#D72691] text-white cursor-pointer w-24 text-center font-semibold px-3 py-2 rounded-md hover:scale-105 transition-all duration-200 shadow-md hover:shadow-pink-300/50 border border-[#fc6a00]">
+              LogOut
+            </button>
+            )}
         </ul>
 
         {/* Mobile Menu Button */}

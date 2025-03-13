@@ -33,14 +33,20 @@ const Graph = ({ graphData }) => {
       {
         label: "Total Clicks",
         data: userPerDay,
-        backgroundColor: "rgba(54, 162, 235, 0.5)", // Soft blue
-        borderColor: "#36A2EB",
-        borderWidth: 1.5,
-        borderRadius: 8, // Rounded bars
-        barThickness: 24,
-        hoverBackgroundColor: "rgba(54, 162, 235, 0.7)", // Hover effect
+        backgroundColor: (context) => {
+          const ctx = context.chart.ctx;
+          const gradient = ctx.createLinearGradient(0, 0, 0, 400);
+          gradient.addColorStop(0, "#4F46E5"); // Indigo
+          gradient.addColorStop(1, "#9333EA"); // Purple
+          return gradient;
+        },
+        borderColor: "#4F46E5",
+        borderWidth: 2,
+        borderRadius: 12, // More rounded bars
+        barThickness: 30, // Slightly thicker bars
+        hoverBackgroundColor: "#6B21A8", // Darker hover effect
         categoryPercentage: 0.8,
-        barPercentage: 0.8,
+        barPercentage: 0.9,
       },
     ],
   };
@@ -61,7 +67,7 @@ const Graph = ({ graphData }) => {
       },
       title: {
         display: !hasData,
-        text: "No Data For This Time Period\nShare your short link to view where your engagements are coming from.",
+        text: "No Data Available.\nShare your short link to track engagements.",
         color: "#888",
         font: {
           size: 16,
@@ -77,18 +83,19 @@ const Graph = ({ graphData }) => {
       y: {
         beginAtZero: true,
         ticks: {
-          color: "#555",
+          color: "#333",
           font: {
             size: 14,
+            weight: "500",
           },
         },
         grid: {
-          color: "rgba(0, 0, 0, 0.1)", // Light grid
+          color: "rgba(0, 0, 0, 0.1)", // Softer grid
         },
         title: {
           display: true,
-          text: "Number Of Clicks",
-          color: "#444",
+          text: "Number of Clicks",
+          color: "#222",
           font: {
             size: 16,
             weight: "bold",
@@ -97,9 +104,10 @@ const Graph = ({ graphData }) => {
       },
       x: {
         ticks: {
-          color: "#555",
+          color: "#333",
           font: {
             size: 12,
+            weight: "500",
           },
           maxRotation: 30, // Reduce rotation angle
           minRotation: 0,
@@ -107,12 +115,12 @@ const Graph = ({ graphData }) => {
           maxTicksLimit: 7, // Limits number of visible labels
         },
         grid: {
-          color: "rgba(0, 0, 0, 0.1)", // Light grid
+          color: "rgba(0, 0, 0, 0.1)", // Softer grid
         },
         title: {
           display: true,
           text: "Date",
-          color: "#444",
+          color: "#222",
           font: {
             size: 16,
             weight: "bold",
@@ -121,14 +129,20 @@ const Graph = ({ graphData }) => {
       },
     },
     animation: {
-      duration: 800,
-      easing: "easeOutQuart",
+      duration: 1200,
+      easing: "easeOutBounce",
     },
   };
 
   return (
-    <div className="p-4 bg-white rounded-lg shadow-md border">
-      {hasData ? <Bar data={data} options={options} /> : <p className="text-center text-gray-500">{options.plugins.title.text}</p>}
+    <div className="p-6 rounded-xl shadow-xl border border-gray-200 bg-white bg-opacity-60 backdrop-blur-md">
+      {hasData ? (
+        <div className="h-80">
+          <Bar data={data} options={options} />
+        </div>
+      ) : (
+        <p className="text-center text-gray-600">{options.plugins.title.text}</p>
+      )}
     </div>
   );
 };

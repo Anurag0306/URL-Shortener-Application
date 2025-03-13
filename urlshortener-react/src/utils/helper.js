@@ -1,4 +1,3 @@
-
 import { subDomainList } from "./constant";
 
 export const getApps = () => {
