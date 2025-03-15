@@ -6,16 +6,18 @@ import ShortenPopUp from './ShortenPopUp'
 import { FaLink } from 'react-icons/fa'
 import Loader from '../Loader'
 import ShortenUrlList from './ShortenUrlList'
+import { useNavigate } from 'react-router-dom'
 
 const DashboardLayout = () => {
   //const refetch = false;
+  const navigate = useNavigate();
   const { token } = useStoreContext();
   const[shortenPopUp,setShortenPopUp] =useState(false);
 
 
   // Handle errors
   const onError = () => {
-    console.error("Error fetching total clicks");
+    navigate("/error");
   };
 
   // Fetch analytics data
