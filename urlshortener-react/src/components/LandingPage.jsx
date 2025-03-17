@@ -12,6 +12,10 @@ const LandingPage = () => {
     const navigate  = useNavigate();
     const { token } = useStoreContext();
     console.log("TOKEN FROM LANDING PAGE: "+ token);
+
+    const dashBoardNavigateHandler = () => {
+      navigate("/dashboard");
+    };
     
   
   return (
@@ -44,31 +48,33 @@ const LandingPage = () => {
           </p>
 
           {/* Buttons */}
-          <div className="flex justify-center lg:justify-start items-center gap-4">
-          <motion.button
-              initial={{ opacity: 0, y: 80 }}
-              whileInView={{
-                opacity: 1,
-                y: 0,
-              }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-                className="bg-gradient-to-r from-orange-500 to-red-400 hover:scale-105 transition-all duration-300 text-white w-44 rounded-lg py-3 shadow-lg"
+            <div className="flex justify-center lg:justify-start items-center gap-4">
+              <motion.button
+                  initial={{ opacity: 0, y: 80 }}
+                  whileInView={{
+                  opacity: 1,
+                  y: 0,
+                  }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.8 }}
+                  onClick={dashBoardNavigateHandler}
+                  className="bg-gradient-to-r from-orange-500 to-red-400 hover:scale-105 transition-all duration-300 text-white w-44 rounded-lg py-3 shadow-lg"
+                  >
+                  Manage Links
+                </motion.button>
+              <motion.button
+                initial={{ opacity: 0, y: 80 }}
+                whileInView={{
+                  opacity: 1,
+                  y: 0,
+                }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8 }}
+                onClick={dashBoardNavigateHandler}
+                className="border border-red-300 hover:bg-gradient-to-r from-orange-500 to-red-400 hover:text-white transition-all duration-300 w-44 text-blue-500 rounded-lg py-3 shadow-md"
                 >
-                Manage Links
-            </motion.button>
-            <motion.button
-              initial={{ opacity: 0, y: 80 }}
-              whileInView={{
-                opacity: 1,
-                y: 0,
-              }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-              className="border border-red-300 hover:bg-gradient-to-r from-orange-500 to-red-400 hover:text-white transition-all duration-300 w-44 text-blue-500 rounded-lg py-3 shadow-md"
-              >
-                Create Short Link
-            </motion.button>
+                  Create Short Link
+              </motion.button>
           </div>
         </div>
 

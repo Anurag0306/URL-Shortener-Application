@@ -58,11 +58,17 @@ const DashboardLayout = () => {
           </div>
 
           {/* Call to Action */}
-          <div className="py-6 flex justify-center">
+          <div className="py-6 flex justify-center gap-4">
             <button className="px-6 py-3 text-lg font-medium rounded-lg bg-gradient-to-r from-blue-500 to-indigo-500 text-white shadow-lg transition-transform hover:scale-105 hover:shadow-xl"
              onClick={()=>setShortenPopUp(true)}
             >
             + Create New Short URL
+            </button>
+            <button
+              className="px-6 py-3 text-lg font-medium rounded-lg bg-gray-200 text-gray-700 shadow-lg transition-transform hover:scale-105 hover:shadow-xl"
+              onClick={() => window.location.reload()} // Refresh page
+              >
+              Refresh
             </button>
           </div>
           <div>

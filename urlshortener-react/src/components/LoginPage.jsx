@@ -89,7 +89,7 @@ const LoginPage = () => {
     
                 <p className='text-center text-sm text-gray-700 mt-6'>
                         Don't have an account? 
-                    <Link className='font-semibold underline hover:text-[#E44D26]' to="/login">
+                    <Link className='font-semibold underline hover:text-[#E44D26]' to="/register">
                         <span className='text-[#E44D26]'> Sign up</span>
                     </Link>
                 </p>

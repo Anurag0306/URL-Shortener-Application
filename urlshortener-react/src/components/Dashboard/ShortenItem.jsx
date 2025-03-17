@@ -20,7 +20,7 @@ const ShortenItem = ({ originalUrl, shortUrl, clickCount, createdDate }) => {
   const [selectedUrl, setSelectedUrl] = useState('');
   const [analyticsData, setAnalyticsData] = useState([]);
 
-  const subDomain = import.meta.env.VITE_REACT_SUBDOMAIN.replace(/^https?:\/\//, '');
+  const subDomain = import.meta.env.VITE_REACT_FRONT_END_URL.replace(/^https?:\/\//, '');
 
   const analyticsHandler = (shortUrl) => {
     if (!analyticToggle) {
@@ -66,12 +66,16 @@ const ShortenItem = ({ originalUrl, shortUrl, clickCount, createdDate }) => {
         <div className="flex-1 space-y-3">
           {/* Shortened URL */}
           <div className="flex items-center gap-2">
-            <Link
-              target="_blank"
-              className="text-lg font-semibold text-blue-700 hover:text-blue-500 transition-all"
-              to={`${import.meta.env.VITE_REACT_SUBDOMAIN}/${shortUrl}`}
-            >
-              {subDomain + '/' + shortUrl}
+            {/* <a href={`${import.meta.env.VITE_REACT_SUBDOMAIN}/${shortUrl}`}
+                target="_blank"
+                className=" text-[17px]  font-montserrat font-[600] text-linkColor ">
+                {subDomain + "/" + `${shortUrl}`}
+            </a> */}
+          <Link
+              target='_'
+              className='text-[17px]  font-montserrat font-[600] text-blue-700 '
+              to={import.meta.env.VITE_REACT_FRONT_END_URL + "/s/" + `${shortUrl}`}>
+                  {subDomain + "/s/" + `${shortUrl}`}
             </Link>
             <FaExternalLinkAlt className="text-blue-700 text-sm" />
           </div>
@@ -97,7 +101,8 @@ const ShortenItem = ({ originalUrl, shortUrl, clickCount, createdDate }) => {
         {/* Buttons */}
         <div className="flex gap-4">
           {/* Copy Button */}
-          <CopyToClipboard onCopy={() => setIsCopied(true)} text={`${import.meta.env.VITE_REACT_SUBDOMAIN}${shortUrl}`}>
+          <CopyToClipboard onCopy={() => setIsCopied(true)} 
+              text={`${import.meta.env.VITE_REACT_FRONT_END_URL + "/s/" + `${shortUrl}`}`}>
             <button className="flex items-center gap-2 bg-gradient-to-r from-blue-500 to-purple-500 text-white py-2 px-6 rounded-xl shadow-lg hover:scale-105 transition-transform">
               {isCopied ? 'Copied' : 'Copy'}
               {isCopied ? <LiaCheckSolid className="text-md" /> : <IoCopy className="text-md" />}
